@@ -1,0 +1,18 @@
+{
+  "Group": "Orchid",
+  "Name": "OrchidCore",
+  "Version": "%version%",
+  "Authors": [
+    {
+      "Name": "blueb",
+      "Email": "ihateblueb@proton.me",
+      "Url": "https://github.com/ihateblueb"
+    }
+  ],
+  "Website": "https://github.com/ihateblueb/OrchidCore",
+  "Main": "site.remlit.orchidcore.Main",
+  "ServerVersion": "*",
+  "OptionalDependencies": {
+    "Hytale:PermissionsModule": "*"
+  }
+}
