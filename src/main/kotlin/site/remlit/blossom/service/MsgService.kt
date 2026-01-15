@@ -1,14 +1,12 @@
-package site.remlit.orchidcore.service
+package site.remlit.blossom.service
 
 import com.hypixel.hytale.server.core.universe.Universe
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import site.remlit.orchidcore.Coroutines
-import site.remlit.orchidcore.Main
-import site.remlit.orchidcore.exception.GracefulException
-import site.remlit.orchidcore.util.gray
-import site.remlit.orchidcore.util.msg
-import site.remlit.orchidcore.util.sendMessage
+import site.remlit.blossom.Coroutines
+import site.remlit.blossom.Main
+import site.remlit.blossom.exception.GracefulException
+import site.remlit.blossom.util.gray
 import java.util.UUID
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes

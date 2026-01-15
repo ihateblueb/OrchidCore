@@ -1,12 +1,10 @@
-package site.remlit.orchidcore.command
+package site.remlit.blossom.command
 
 import com.hypixel.hytale.server.core.command.system.AbstractCommand
 import com.hypixel.hytale.server.core.command.system.CommandContext
-import site.remlit.orchidcore.exception.GracefulException
-import site.remlit.orchidcore.service.TpaService
-import site.remlit.orchidcore.util.red
-import site.remlit.orchidcore.util.runCommand
-import site.remlit.orchidcore.util.sendMessage
+import site.remlit.blossom.exception.GracefulException
+import site.remlit.blossom.service.TpaService
+import site.remlit.blossom.util.runCommand
 import java.util.concurrent.CompletableFuture
 
 class TpdenyCommand : AbstractCommand(
@@ -14,16 +12,14 @@ class TpdenyCommand : AbstractCommand(
     "Denies a pending teleportation request",
 ) {
     init {
-        this.requirePermission("orchidcore.command.tpdeny")
+        this.requirePermission("blossom.command.tpdeny")
         this.addAliases("tpreject", "tpd", "tpr")
     }
 
     override fun execute(ctx: CommandContext): CompletableFuture<Void> =
         runCommand(ctx) {
-            if (!ctx.isPlayer) {
-                ctx.sendMessage("Only players can issue this command")
-                return@runCommand
-            }
+            if (!ctx.isPlayer)
+                throw GracefulException("Only players can issue this command")
 
             TpaService.denyTpa(ctx.sender().uuid)
         }

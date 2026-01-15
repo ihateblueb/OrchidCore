@@ -1,24 +1,18 @@
-package site.remlit.orchidcore.service
+package site.remlit.blossom.service
 
-import com.hypixel.hytale.component.event.EntityEventType
-import com.hypixel.hytale.event.IEvent
-import com.hypixel.hytale.server.core.entity.entities.Player
-import com.hypixel.hytale.server.core.event.events.entity.EntityEvent
 import com.hypixel.hytale.server.core.event.events.player.PlayerChatEvent
 import com.hypixel.hytale.server.core.event.events.player.PlayerConnectEvent
 import com.hypixel.hytale.server.core.event.events.player.PlayerDisconnectEvent
-import com.hypixel.hytale.server.core.event.events.player.PlayerEvent
 import com.hypixel.hytale.server.core.universe.Universe
-import com.hypixel.hytale.server.flock.FlockDeathSystems
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.requests.GatewayIntent
-import site.remlit.orchidcore.Main
-import site.remlit.orchidcore.exception.GracefulException
-import site.remlit.orchidcore.util.sendMessage
+import site.remlit.blossom.Main
+import site.remlit.blossom.exception.GracefulException
+import site.remlit.blossom.util.sendMessage
 import java.util.EnumSet
 
 object DiscordService {
@@ -97,7 +91,7 @@ object DiscordService {
         if (!jdaStarted) return
 
         Main.logger.atInfo().log("Shutting down Discord bridge")
-        channel.sendMessage(Main.config.discord.serverStopFormat).queue()
+        channel.sendMessage(Main.config.discord.serverStopFormat).complete()
 
         jda.shutdown()
     }

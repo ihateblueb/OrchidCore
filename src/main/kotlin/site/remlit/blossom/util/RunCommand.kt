@@ -1,7 +1,7 @@
-package site.remlit.orchidcore.util
+package site.remlit.blossom.util
 
 import com.hypixel.hytale.server.core.command.system.CommandContext
-import site.remlit.orchidcore.exception.GracefulException
+import site.remlit.blossom.exception.GracefulException
 import java.util.concurrent.CompletableFuture
 
 fun runCommand(

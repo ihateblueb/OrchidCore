@@ -1,14 +1,15 @@
-package site.remlit.orchidcore
+package site.remlit.blossom
 
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.plugin.JavaPlugin
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit
-import site.remlit.orchidcore.command.*
-import site.remlit.orchidcore.model.Configuration
-import site.remlit.orchidcore.service.ChatService
-import site.remlit.orchidcore.service.DiscordService
-import site.remlit.orchidcore.service.MsgService
-import site.remlit.orchidcore.util.jsonConfig
+import site.remlit.blossom.command.*
+import site.remlit.blossom.model.Configuration
+import site.remlit.blossom.service.ChatService
+import site.remlit.blossom.service.ConfigService
+import site.remlit.blossom.service.DiscordService
+import site.remlit.blossom.service.MsgService
+import site.remlit.blossom.util.jsonConfig
 import kotlin.io.path.*
 import kotlin.system.measureTimeMillis
 
@@ -18,25 +19,25 @@ class Main(init: JavaPluginInit) : JavaPlugin(init) {
         Companion.logger = this.logger
 
         val cfgTime = measureTimeMillis {
-            val path = Path("./mods/OrchidCore/config.json")
+            if (!configPath.parent.exists())
+                configPath.parent.createDirectories()
 
-            if (!path.parent.exists())
-                path.parent.createDirectories()
-
-            if (!path.exists()) {
-                path.createFile()
+            if (!configPath.exists()) {
+                configPath.createFile()
             }
 
-            if (path.readText().isEmpty())
-                path.writeText(jsonConfig.encodeToString(Configuration()))
+            if (configPath.readText().isEmpty())
+                configPath.writeText(jsonConfig.encodeToString(Configuration()))
 
             config = try {
-                jsonConfig.decodeFromString<Configuration>(path.readText())
+                jsonConfig.decodeFromString<Configuration>(configPath.readText())
             } catch (e: Throwable) {
                 e.printStackTrace()
                 logger.atWarning().log("Failed decoding configuration, using default. Some features may not work.")
                 Configuration()
             }
+
+            ConfigService.upgrade()
         }
 
         logger.atInfo().log("Loaded configuration in $cfgTime ms")
@@ -69,6 +70,7 @@ class Main(init: JavaPluginInit) : JavaPlugin(init) {
     }
 
     companion object {
+        val configPath = Path("./mods/blossom/config.json")
         lateinit var logger: HytaleLogger
         lateinit var config: Configuration
     }

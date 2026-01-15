@@ -1,6 +1,6 @@
 {
   "Group": "Orchid",
-  "Name": "OrchidCore",
+  "Name": "Blossom",
   "Version": "%version%",
   "Authors": [
     {
@@ -9,8 +9,8 @@
       "Url": "https://github.com/ihateblueb"
     }
   ],
-  "Website": "https://github.com/ihateblueb/OrchidCore",
-  "Main": "site.remlit.orchidcore.Main",
+  "Website": "https://github.com/ihateblueb/blossom",
+  "Main": "site.remlit.blossom.Main",
   "ServerVersion": "*",
   "OptionalDependencies": {
     "Hytale:PermissionsModule": "*"

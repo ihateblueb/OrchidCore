@@ -1,4 +1,4 @@
-package site.remlit.orchidcore.util
+package site.remlit.blossom.util
 
 import kotlinx.serialization.json.Json
 
